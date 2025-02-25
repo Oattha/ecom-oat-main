@@ -1,7 +1,6 @@
-// rafce
 import React, { useEffect, useState } from "react";
 import { getOrdersAdmin, changeOrderStatus } from "../../api/admin";
-import useEcomStore from "../../store/ecom-store";
+import useEcomStore from "../../store/ecom-store";  // เพิ่มการนำเข้า useEcomStore ที่นี่
 import { toast } from "react-toastify";
 import { numberFormat } from "../../utils/number";
 import { dateFormat } from "../../utils/dateformat";
@@ -12,26 +11,24 @@ const TableOrders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    // code body
     handleGetOrder(token);
   }, []);
 
   const handleGetOrder = (token) => {
     getOrdersAdmin(token)
       .then((res) => {
+        console.log(res.data);  // ดูข้อมูลที่ได้จาก API
         setOrders(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  
 
   const handleChangeOrderStatus = (token, orderId, orderStatus) => {
-    // code
-    console.log(orderId, orderStatus);
     changeOrderStatus(token, orderId, orderStatus)
       .then((res) => {
-        console.log(res);
         toast.success("Update Status Success!!!");
         handleGetOrder(token);
       })
@@ -60,7 +57,7 @@ const TableOrders = () => {
           <thead>
             <tr className="bg-gray-200 border">
               <th>ลำดับ</th>
-              <th>ผู้ใช้งาน</th>
+              <th>ที่อยู่</th>
               <th>วันที่</th>
               <th>สินค้า</th>
               <th>รวม</th>
@@ -71,26 +68,23 @@ const TableOrders = () => {
 
           <tbody>
             {orders?.map((item, index) => {
-              console.log(item);
               return (
                 <tr key={index} className="border">
                   <td className="text-center">{index + 1}</td>
                   <td>
-                    <p>{item.orderedBy.email}</p>
-                    <p>{item.orderedBy.address}</p>
+                    <p>{item.orderedBy.name}</p> {/* ชื่อผู้ใช้ */}
+                    <p>{item.orderedBy.phone}</p> {/* เบอร์โทร */}
+                    <p>{item.orderedBy.address}</p> {/* ที่อยู่ */}
                   </td>
 
-                  <td>
-                    {dateFormat(item.createdAt)}
-                  </td>
+                  <td>{dateFormat(item.createdAt)}</td>
 
                   <td className="px-2 py-4">
                     {item.products?.map((product, index) => (
                       <li key={index}>
                         {product.product.title} {"  "}
                         <span className="text-sm">
-                          {product.count} x{" "}
-                          {numberFormat(product.product.price)}
+                          {product.count} x {numberFormat(product.product.price)}
                         </span>
                       </li>
                     ))}
@@ -100,8 +94,7 @@ const TableOrders = () => {
 
                   <td>
                     <span
-                      className={`${getStatusColor(item.orderStatus)} px-2 py-1 
-rounded-full`}
+                      className={`${getStatusColor(item.orderStatus)} px-2 py-1 rounded-full`}
                     >
                       {item.orderStatus}
                     </span>

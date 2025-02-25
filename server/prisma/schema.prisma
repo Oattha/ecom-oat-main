@@ -23,6 +23,7 @@ model User {
   picture   String?
   role      String   @default("user")
   enabled   Boolean  @default(true)
+  phone     String?
   address   String?
   orders    Order[]
   carts     Cart[]
@@ -59,6 +60,7 @@ model Order {
   amount          Int
   status          String
   currentcy       String
+  trackingNumber  String?          // เก็บเลขพัสดุ
 }
 
 model ProductOnOrder {

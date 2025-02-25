@@ -10,7 +10,8 @@ const {
     emptyCart,
     saveAddress,
     saveOrder,
-    getOrder
+    getOrder,
+    saveNameAndPhone
 } = require('../controllers/user')
 
 router.get('/users', authCheck, adminCheck, listUsers)
@@ -26,7 +27,8 @@ router.post('/user/address', authCheck, saveAddress)
 router.post('/user/order', authCheck, saveOrder)
 router.get('/user/order', authCheck, getOrder)
 
-
+router.post('/user/name-phone', authCheck, saveNameAndPhone);
+router.get('/user/name-phone', authCheck, getUserCart)
 
 
 module.exports = router

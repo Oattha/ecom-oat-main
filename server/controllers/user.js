@@ -289,3 +289,28 @@ exports.getOrder = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
+
+
+// controllers/user.js
+
+exports.saveNameAndPhone = async (req, res) => {
+  try {
+    const { name, phone } = req.body;
+    console.log(name, phone);
+    // ใช้ ID จาก JWT หรือ session ใน req.user.id
+    const user = await prisma.user.update({
+      where: {
+        id: Number(req.user.id), // ใช้ user ID จาก session หรือ JWT
+      },
+      data: {
+        name: name,
+        phone: phone,
+      },
+    });
+
+    res.json({ ok: true, message: 'Name and phone updated successfully', user });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
