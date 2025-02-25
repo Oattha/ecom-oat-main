@@ -53,3 +53,11 @@ export const changeUserRole = async (token,value) => {
     },
   });
 };
+
+export const updateTrackingNumber = (token, orderId, trackingNumber) => {
+  return axios.post(
+    `/api/orders/${orderId}/tracking`,
+    { trackingNumber },
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+};
