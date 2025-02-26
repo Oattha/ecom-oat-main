@@ -15,7 +15,8 @@ const {
     saveNameAndPhone,
     getNameAndPhone,
     currentUser,
-    updateUser // ✅ เพิ่ม updateUser
+    updateUser,
+    getUserById // ✅ เพิ่ม updateUser
 } = require('../controllers/user');
 
 router.get('/users', authCheck, adminCheck, listUsers);
@@ -38,5 +39,8 @@ router.get("/current-user", authCheck, currentUser);
 
 // ✅ ตอนนี้ updateUser จะถูกใช้งานได้
 router.put("/user/update", authCheck, updateUser);
+
+
+router.get('/user/:id', authCheck, getUserById); // ดึงข้อมูลผู้ใช้ตาม ID
 
 module.exports = router;

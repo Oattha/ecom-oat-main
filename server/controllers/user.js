@@ -386,3 +386,30 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+exports.getUserById = async (req, res) => {
+  try {
+    const { id } = req.params; // รับ id จาก URL parameter
+    const user = await prisma.user.findUnique({
+      where: {
+        id: Number(id), // แปลง id เป็นตัวเลขเพื่อใช้ในการค้นหา
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        phone: true,
+        address: true,
+        picture: true, // ถ้ามีฟิลด์นี้ในฐานข้อมูล
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(user); // ส่งข้อมูลของผู้ใช้กลับ
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
