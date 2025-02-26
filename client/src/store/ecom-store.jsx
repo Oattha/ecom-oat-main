@@ -5,6 +5,7 @@ import { listCategory } from "../api/Category";
 import { listProduct, searchFilters } from "../api/product";
 import _ from "lodash";
 
+
 const ecomStore = (set, get) => ({
   user: null,
   token: null,
@@ -19,7 +20,9 @@ const ecomStore = (set, get) => ({
       products: [],
       carts: [],
     });
+    localStorage.removeItem("ecom-store"); // ✅ ลบข้อมูล Zustand ที่ถูก persist
   },
+  
   actionAddtoCart: (product) => {
     const carts = get().carts;
     const updateCart = [...carts, { ...product, count: 1 }];

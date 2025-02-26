@@ -314,3 +314,75 @@ exports.saveNameAndPhone = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+exports.getNameAndPhone = async (req, res) => {
+  try {
+      const user = await prisma.user.findFirst({
+          where: { email: req.user.email },
+          select: { name: true, phone: true }
+      });
+
+      if (!user) {
+          return res.status(404).json({ message: "User not found" });
+      }
+
+      res.json(user);
+  } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Server Error" });
+  }
+};
+
+exports.saveNameAndPhone = async (req, res) => {
+  try {
+      const { name, phone } = req.body;
+
+      const user = await prisma.user.update({
+          where: { email: req.user.email },
+          data: { name, phone }
+      });
+
+      res.json({ message: "บันทึกข้อมูลสำเร็จ", user });
+  } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Server Error" });
+  }
+};
+
+
+exports.currentUser = async (req, res) => {
+  try {
+      const user = await prisma.user.findFirst({
+          where: { email: req.user.email },
+          select: {
+              id: true,
+              email: true,
+              role: true,
+              name: true,
+              phone: true
+          }
+      });
+      res.json({ user });
+  } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+
+exports.updateUser = async (req, res) => {
+  try {
+      const { name, phone, address } = req.body;
+      const user = await prisma.user.update({
+          where: { id: Number(req.user.id) },
+          data: { name, phone, address },
+      });
+
+      res.json({ message: "User updated successfully", user });
+  } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Server Error" });
+  }
+};
+

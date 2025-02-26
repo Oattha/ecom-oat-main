@@ -1,5 +1,5 @@
 // rafce
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // ✅ เพิ่ม useEffect
 import axios from "axios";
 import { toast } from "react-toastify";
 import useEcomStore from "../../store/ecom-store";
@@ -10,11 +10,19 @@ const Login = () => {
   const navigate = useNavigate();
   const actionLogin = useEcomStore((state) => state.actionLogin);
   const user = useEcomStore((state) => state.user);
+  const logout = useEcomStore((state) => state.logout); // ✅ เรียก logout
+
   console.log("user form zustand", user);
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+
+  // ✅ ใช้ useEffect เพื่อล้าง user ทุกครั้งที่เข้าหน้า Login
+  useEffect(() => {
+    logout(); // ล้าง user และ token ที่อาจยังค้างอยู่
+  }, []);
 
   const handleOnChange = (e) => {
     setForm({
@@ -22,6 +30,7 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

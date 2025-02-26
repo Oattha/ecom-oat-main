@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   UserCog,
@@ -8,16 +8,18 @@ import {
   ListOrdered,
   LogOut 
 } from "lucide-react";
+
 const SidebarAdmin = () => {
+  const navigate = useNavigate(); // ✅ ใช้ useNavigate() เพื่อนำทาง
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // ✅ ลบ token ออกจาก localStorage
+    navigate("/login"); // ✅ นำทางไปยังหน้าล็อกอิน
+  };
+
   return (
-    <div
-      className="bg-gray-800 w-64 text-gray-100 
-    flex flex-col h-screen"
-    >
-      <div
-        className="h-24 bg-gray-900 flex items-center
-      justify-center text-2xl font-bold"
-      >
+    <div className="bg-gray-800 w-64 text-gray-100 flex flex-col h-screen">
+      <div className="h-24 bg-gray-900 flex items-center justify-center text-2xl font-bold">
         Admin Panel
       </div>
 
@@ -84,16 +86,14 @@ const SidebarAdmin = () => {
       </nav>
 
       <div>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "bg-gray-900 rounded-md text-white px-4 py-2 flex items-center"
-              : "text-gray-300 px-4 py-2 hover:bg-gray-700 hover:text-white rounded flex items-center"
-          }
+        {/* ✅ ใช้ปุ่มแทน NavLink และเรียก handleLogout */}
+        <button
+          onClick={handleLogout}
+          className="w-full text-left text-gray-300 px-4 py-2 hover:bg-gray-700 hover:text-white rounded flex items-center"
         >
-          <LogOut  className="mr-2" />
+          <LogOut className="mr-2" />
           Logout
-        </NavLink>
+        </button>
       </div>
     </div>
   );
