@@ -4,9 +4,15 @@ const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
     try {
+<<<<<<< HEAD
         const { name, phone, email, password, role } = req.body; // ✅ เพิ่ม name และ phone
 
         if (!name || !phone || !email || !password) { // ✅ ตรวจสอบให้ครบ
+=======
+        const { email, password, role } = req.body;
+
+        if (!email || !password) {
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
             return res.status(400).json({ message: 'กรุณากรอกข้อมูลให้ครบ' });
         }
 
@@ -22,8 +28,11 @@ exports.register = async (req, res) => {
 
         await prisma.user.create({
             data: {
+<<<<<<< HEAD
                 name: name,   // ✅ เพิ่ม name
                 phone: phone, // ✅ เพิ่ม phone
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
                 email: email,
                 password: hashPassword,
                 role: role || "user", // ✅ Default เป็น user
@@ -81,8 +90,11 @@ exports.currentUser = async (req, res) => {
             where: { email: req.user.email },
             select: {
                 id: true,
+<<<<<<< HEAD
                 name: true,  // ✅ ดึง name
                 phone: true, // ✅ ดึง phone
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
                 email: true,
                 role: true
             }

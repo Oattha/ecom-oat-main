@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { listUserCart, saveAddress, getCurrentUser, updateUser } from "../../api/user";
 
+=======
+// rafce
+import React, { useState, useEffect } from "react";
+import { listUserCart, saveAddress } from "../../api/user";
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
 import useEcomStore from "../../store/ecom-store";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -12,8 +18,11 @@ const SummaryCard = () => {
   const [products, setProducts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
 
+<<<<<<< HEAD
   const [name, setName] = useState(""); // ✅ เพิ่ม state ชื่อ
   const [phone, setPhone] = useState(""); // ✅ เพิ่ม state เบอร์โทร
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
   const [address, setAddress] = useState("");
   const [addressSaved, setAddressSaved] = useState(false);
 
@@ -21,12 +30,16 @@ const SummaryCard = () => {
 
   useEffect(() => {
     hdlGetUserCart(token);
+<<<<<<< HEAD
     hdlGetUserInfo(token);
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
   }, []);
 
   const hdlGetUserCart = (token) => {
     listUserCart(token)
       .then((res) => {
+<<<<<<< HEAD
         setProducts(res.data.products);
         setCartTotal(res.data.cartTotal);
       })
@@ -61,15 +74,49 @@ const SummaryCard = () => {
   const hdlGoToPayment = () => {
     if (!addressSaved) {
       return toast.warning("กรุณากรอกข้อมูลให้ครบก่อน");
+=======
+        // console.log(res)
+        setProducts(res.data.products);
+        setCartTotal(res.data.cartTotal);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const hdlSaveAddress = () => {
+    if (!address) {
+      return toast.warning("Please fill address");
+    }
+    saveAddress(token, address)
+      .then((res) => {
+        console.log(res);
+        toast.success(res.data.message);
+        setAddressSaved(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const hdlGoToPayment = () => {
+    if (!addressSaved) {
+      return toast.warning("กรุณากรอกทีอยู่ก่อนจ้า");
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
     }
     navigate("/user/payment");
   };
 
+<<<<<<< HEAD
+=======
+  console.log(products);
+
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
   return (
     <div className="mx-auto">
       <div className="flex flex-wrap gap-4">
         {/* Left */}
         <div className="w-2/4">
+<<<<<<< HEAD
           <div className="bg-gray-100 p-4 rounded-md border shadow-md space-y-4">
             <h1 className="font-bold text-lg">ที่อยู่ในการจัดส่ง</h1>
             
@@ -101,12 +148,33 @@ const SummaryCard = () => {
               className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 hover:scale-105"
             >
               บันทึกข้อมูล
+=======
+          <div
+            className="bg-gray-100 p-4 rounded-md 
+          border shadow-md space-y-4"
+          >
+            <h1 className="font-bold text-lg">ที่อยู่ในการจัดส่ง</h1>
+            <textarea
+              required
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="กรุณากรอกที่อยู่"
+              className="w-full px-2 rounded-md"
+            />
+            <button
+              onClick={hdlSaveAddress}
+              className="bg-blue-500 text-white
+            px-4 py-2 rounded-md shadow-md hover:bg-blue-700
+            hover:scale-105 hover:translate-y-1 hover:duration-200"
+            >
+              Save Address
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
             </button>
           </div>
         </div>
 
         {/* Right */}
         <div className="w-2/4">
+<<<<<<< HEAD
           <div className="bg-gray-100 p-4 rounded-md border shadow-md space-y-4">
             <h1 className="text-lg font-bold">คำสั่งซื้อของคุณ</h1>
 
@@ -122,6 +190,32 @@ const SummaryCard = () => {
                 <p className="text-red-500 font-bold">
                   {numberFormat(item.count * item.product.price)}
                 </p>
+=======
+          <div
+            className="bg-gray-100 p-4 rounded-md 
+          border shadow-md space-y-4"
+          >
+            <h1 className="text-lg font-bold">คำสั่งซื้อของคุณ</h1>
+
+            {/* Item List */}
+
+            {products?.map((item, index) => (
+              <div key={index}>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <p className="font-bold">{item.product.title}</p>
+                    <p className="text-sm">
+                      จำนวน : {item.count} x {numberFormat(item.product.price) }
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-red-500 font-bold">
+                      { numberFormat(item.count * item.product.price)     }
+                    </p>
+                  </div>
+                </div>
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
               </div>
             ))}
 
@@ -137,6 +231,7 @@ const SummaryCard = () => {
             </div>
 
             <hr />
+<<<<<<< HEAD
             <div className="flex justify-between">
               <p className="font-bold">ยอดรวมสุทธิ:</p>
               <p className="text-red-500 font-bold text-lg">{numberFormat(cartTotal)}</p>
@@ -149,6 +244,26 @@ const SummaryCard = () => {
             >
               ดำเนินการชำระเงิน
             </button>
+=======
+            <div>
+              <div className="flex justify-between">
+                <p className="font-bold">ยอดรวมสุทธิ:</p>
+                <p className="text-red-500 font-bold text-lg">{numberFormat(cartTotal) }</p>
+              </div>
+            </div>
+
+            <hr />
+            <div>
+              <button
+                onClick={hdlGoToPayment}
+                // disabled={!addressSaved}
+                className="bg-green-400 w-full p-2 rounded-md
+              shadow-md text-white hover:bg-green-600"
+              >
+                ดำเนินการชำระเงิน
+              </button>
+            </div>
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
           </div>
         </div>
       </div>

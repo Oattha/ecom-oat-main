@@ -1,5 +1,9 @@
 // rafce
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react"; // ✅ เพิ่ม useEffect
+=======
+import React, { useState } from "react";
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
 import axios from "axios";
 import { toast } from "react-toastify";
 import useEcomStore from "../../store/ecom-store";
@@ -10,27 +14,37 @@ const Login = () => {
   const navigate = useNavigate();
   const actionLogin = useEcomStore((state) => state.actionLogin);
   const user = useEcomStore((state) => state.user);
+<<<<<<< HEAD
   const logout = useEcomStore((state) => state.logout); // ✅ เรียก logout
 
   console.log("user form zustand", user);
 
+=======
+  console.log("user form zustand", user);
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
+<<<<<<< HEAD
   // ✅ ใช้ useEffect เพื่อล้าง user ทุกครั้งที่เข้าหน้า Login
   useEffect(() => {
     logout(); // ล้าง user และ token ที่อาจยังค้างอยู่
   }, []);
 
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
   const handleOnChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

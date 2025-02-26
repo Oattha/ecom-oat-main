@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // ✅ Import module ที่ต้องใช้
 const express = require('express')
 const router = express.Router()
@@ -22,3 +23,19 @@ router.post('/current-admin', authCheck, adminCheck, currentUser)
 
 // ✅ ส่งออก router ไปใช้ใน server.js
 module.exports = router
+=======
+// import ....
+const express = require('express')
+const router = express.Router()
+// import controller
+const { register, login, currentUser } = require('../controllers/auth')
+// import Middleware
+const { authCheck, adminCheck } = require('../middlewares/authCheck')
+
+router.post('/register', register)
+router.post('/login', login)
+router.post('/current-user', authCheck, currentUser)
+router.post('/current-admin', authCheck, adminCheck, currentUser)
+
+module.exports = router
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336

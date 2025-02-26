@@ -5,7 +5,10 @@ import { listCategory } from "../api/Category";
 import { listProduct, searchFilters } from "../api/product";
 import _ from "lodash";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
 const ecomStore = (set, get) => ({
   user: null,
   token: null,
@@ -20,9 +23,13 @@ const ecomStore = (set, get) => ({
       products: [],
       carts: [],
     });
+<<<<<<< HEAD
     localStorage.removeItem("ecom-store"); // ✅ ลบข้อมูล Zustand ที่ถูก persist
   },
   
+=======
+  },
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
   actionAddtoCart: (product) => {
     const carts = get().carts;
     const updateCart = [...carts, { ...product, count: 1 }];

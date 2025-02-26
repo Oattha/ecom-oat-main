@@ -1,5 +1,9 @@
 import React from "react";
+<<<<<<< HEAD
 import { NavLink, useNavigate } from "react-router-dom";
+=======
+import { NavLink } from "react-router-dom";
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
 import {
   LayoutDashboard,
   UserCog,
@@ -8,6 +12,7 @@ import {
   ListOrdered,
   LogOut 
 } from "lucide-react";
+<<<<<<< HEAD
 
 const SidebarAdmin = () => {
   const navigate = useNavigate(); // ✅ ใช้ useNavigate() เพื่อนำทาง
@@ -20,6 +25,18 @@ const SidebarAdmin = () => {
   return (
     <div className="bg-gray-800 w-64 text-gray-100 flex flex-col h-screen">
       <div className="h-24 bg-gray-900 flex items-center justify-center text-2xl font-bold">
+=======
+const SidebarAdmin = () => {
+  return (
+    <div
+      className="bg-gray-800 w-64 text-gray-100 
+    flex flex-col h-screen"
+    >
+      <div
+        className="h-24 bg-gray-900 flex items-center
+      justify-center text-2xl font-bold"
+      >
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
         Admin Panel
       </div>
 
@@ -86,6 +103,7 @@ const SidebarAdmin = () => {
       </nav>
 
       <div>
+<<<<<<< HEAD
         {/* ✅ ใช้ปุ่มแทน NavLink และเรียก handleLogout */}
         <button
           onClick={handleLogout}
@@ -94,6 +112,18 @@ const SidebarAdmin = () => {
           <LogOut className="mr-2" />
           Logout
         </button>
+=======
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "bg-gray-900 rounded-md text-white px-4 py-2 flex items-center"
+              : "text-gray-300 px-4 py-2 hover:bg-gray-700 hover:text-white rounded flex items-center"
+          }
+        >
+          <LogOut  className="mr-2" />
+          Logout
+        </NavLink>
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
       </div>
     </div>
   );

@@ -9,19 +9,29 @@ import { useForm } from "react-hook-form";
 
 const registerSchema = z
   .object({
+<<<<<<< HEAD
     name: z.string().min(2, { message: "ต้องกรอกชื่อ-นามสกุล" }),
     phone: z.string().regex(/^\d{10}$/, { message: "เบอร์โทรต้องเป็นตัวเลข 10 หลัก" }),
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
     email: z.string().email({ message: "Invalid email!!!" }),
     password: z.string().min(8, { message: "Password ต้องมากกว่า 8 ตัวอักษร" }),
     confirmPassword: z.string(),
     role: z.enum(["user", "admin"]), // กำหนด role ว่าต้องเป็น user หรือ admin
   })
   .refine((data) => data.password === data.confirmPassword, {
+<<<<<<< HEAD
     message: "Password ไม่ตรงกัน",
     path: ["confirmPassword"],
   });
 
 
+=======
+    message: "Password มันบ่ตรงกันเด้อ",
+    path: ["confirmPassword"],
+  });
+
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
 const Register = () => {
   // Javascript
   const [passwordScore, setPasswordScore] = useState(0);
@@ -48,10 +58,17 @@ const Register = () => {
     // const passwordScore = zxcvbn(data.password).score;
     // console.log(passwordScore);
     // if (passwordScore < 3) {
+<<<<<<< HEAD
     //   toast.warning("Password No Strong!!!!!");
     //   return;
     // }
     // console.log("ok ทำการส่งข้อมูลไปที่เซิฟเวอร์");
+=======
+    //   toast.warning("Password บ่ Strong!!!!!");
+    //   return;
+    // }
+    // console.log("ok ลูกพี่");
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
     // Send to Back
     try {
       const res = await axios.post("http://localhost:5001/api/register", data);
@@ -156,6 +173,7 @@ const Register = () => {
               </select>
             </div>
             
+<<<<<<< HEAD
             <div>
   <input
     {...register("name")}
@@ -186,6 +204,8 @@ const Register = () => {
   )}
 </div>
 
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
             <button 
             className="bg-blue-500 rounded-md
              w-full text-white font-bold py-2 shadow

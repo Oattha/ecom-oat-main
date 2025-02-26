@@ -314,6 +314,7 @@ exports.saveNameAndPhone = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+<<<<<<< HEAD
 
 
 exports.getNameAndPhone = async (req, res) => {
@@ -413,3 +414,5 @@ exports.getUserById = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336

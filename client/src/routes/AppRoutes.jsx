@@ -21,8 +21,11 @@ import ProtectRouteAdmin from './ProtectRouteAdmin'
 import EditProduct from '../pages/admin/EditProduct'
 import Payment from '../pages/user/Payment'
 import ManageOrders from '../pages/admin/ManageOrders'
+<<<<<<< HEAD
 import Profile from '../pages/user/profile' // ✅ เพิ่ม import Profile
 
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
 const router = createBrowserRouter([
     {
         path: '/',
@@ -34,7 +37,10 @@ const router = createBrowserRouter([
             { path: 'checkout', element: <Checkout /> },
             { path: 'login', element: <Login /> },
             { path: 'register', element: <Register /> },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
         ]
     },
     {
@@ -57,7 +63,10 @@ const router = createBrowserRouter([
             { index: true, element: <HomeUser /> },
             { path: 'payment', element: <Payment /> },
             { path: 'history', element: <History /> },
+<<<<<<< HEAD
             { path: 'profile', element: <Profile /> }, // ✅ เพิ่มเส้นทาง Profile
+=======
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
         ]
     }
 

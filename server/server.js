@@ -21,7 +21,11 @@ readdirSync('./routes')
 //     // code
 //     const { username,password } = req.body
 //     console.log(username,password)
+<<<<<<< HEAD
 
+=======
+//     res.send('Jukkru 555+')
+>>>>>>> 5a65e8e532f5442fcc02d0f0f26745e85fce7336
 // })
 // Step 2 Start Server
 app.listen(5001,
