@@ -20,7 +20,7 @@ const Profile = () => {
       })
       .catch((err) => {
         console.error("Error fetching profile:", err);
-        toast.error("ไม่สามารถดึงข้อมูลได้");
+        toast.error("ไม่สามารถดึงข้อมูลได้ครับ");
       });
   };
 
